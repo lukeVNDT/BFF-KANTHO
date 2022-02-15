@@ -1,0 +1,246 @@
+#toast {
+	position: fixed;
+	right: 15px;
+	top: 32px;
+	z-index: 99999;
+}
+
+.toastMsg {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 2px;
+	padding: 20px 0;
+	border-left: 4px solid;
+	/*box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);*/
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+	min-width: 400px;
+	max-width: 450px;
+	transition: all linear .3s;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 15px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.card__toast {
+	height: 50px;
+
+	width: 60px;
+	margin-right: 10px;
+	margin-left: 10px;
+	bottom: 100px;
+	background-color: #222b45;
+	border-radius: 5px;
+}
+.toastMsg + .toastMsg {
+	margin-top: 24px;
+}
+.toast__icon {
+	font-size: 24px;
+	margin-top: 8px;
+	margin-left: 2px;
+}
+.toast__icon,
+.toast__close
+{
+	padding: 0 16px;
+
+}
+.toast__close {
+	margin-bottom: 40px;
+}
+.toast__body {
+	flex-grow: 1;
+}
+.toast__body h3 {
+	margin-top: 10px;
+}
+.toast__title {
+	font-size: 16px;
+	font-weight: 600;
+	color: #a49fc4;
+}
+.toast__msg {
+	font-size: 14px;
+	color: #888;
+	margin-top: 6px;
+	line-height: 1.5;
+}
+.toast__close {
+	font-size: 20px;
+	color: #a49fc4;
+	cursor: pointer;
+}
+
+.toast--success {
+
+	border-left: 7px solid #00d68f;
+	border-radius: 10px;
+
+}
+
+.toast--success .toast__icon i {
+	color: #00d68f !important;
+}
+
+.toast--info {
+	border-color: #2f86eb;
+}
+.toast--info .toast__icon {
+	color: #2f86eb;
+}
+.toast--warning {
+	border-color: #ffc021;
+}
+.toast--warning .toast__icon {
+	color: #ffc021;
+}
+.toast--error {
+	border-left: 7px solid #ff3d71;
+	border-radius: 10px;
+}
+.toast--error .toast__icon i {
+	color: #ff3d71 !important;
+}
+
+/*End popup styles*/
+.popup-link{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.popup-link a{
+    background: #333;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size:17px;
+    cursor:pointer;
+    margin:20px;
+    text-decoration:none;
+}
+
+.popup {
+	 margin: auto;
+  height: 100px;
+  width: 100px;
+  z-index: 99999;
+  
+  position: relative;
+}
+.popup-container  {
+	animation: fadeIn 2s;
+    top: -50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -200%);
+    visibility: visible;
+		background: radial-gradient(#fff2 30%, #fff4);
+    backdrop-filter: blur(5px);
+/*    margin: auto;*/
+    padding: 20px;
+    border: 1px solid #888;
+    min-width: 400px;
+    max-width: 450px;
+    border-radius: 20px;
+    border: none;
+   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    
+}
+/*.popup-content {
+	visibility: visible;
+	background: radial-gradient(#fff2 30%, #fff4);
+    backdrop-filter: blur(5px);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    min-width: 400px;
+    max-width: 450px;
+    border-radius: 20px;
+    border: none;
+   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 5px 8px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    
+}*/
+
+
+@keyframes fadeIn {
+  from {
+  	  opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+  	 opacity: 1;
+    margin-top: 50px;
+  }
+}
+.popup-content:hover {
+  transform: scale(1.1);
+}
+.popup-container p{
+		text-align: center;
+    font-size: 17px;
+    padding: 10px;
+    line-height: 20px;
+}
+.popup-content a.close{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-decoration:none;
+}
+
+.popup-content a.close:hover{
+  color:#333;
+}
+
+.popup-content span:hover,
+.popup-content span:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.popup-container:target{
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.popup-container h3{
+  margin:10px;
+  text-align: center;
+}
+.popup--icon {
+	font-size: 80px;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 25%;
+  color: #db3056;
+}
+
+
+
