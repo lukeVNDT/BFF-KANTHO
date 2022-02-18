@@ -20,44 +20,13 @@ class homecontroller extends Controller
 		$this->category = $categories;
 	}
 	public function recommendajax(Request $req){
-		// $query = $req->get('term','');
-		// $product = product::where('product_name','LIKE','%'.$query.'%')->where('product_status',1)->get();
-		// $data = [];
-
-		// foreach ($product as $pro) {
-		// 	$data[] = [
-		// 		'product_name' => $pro->product_name,
-		// 		'product_id' => $pro->product_id
-		// 	];
-
-		// }
-		// if(count($data)){
-		// 	return $data;
-		// }
-		// else
-		// {
-		// 	return ['product_name' => 'Không tìm thấy sản phẩm','product_id'=>''];
-		// }
+		
 		$data = $req->all();
 		if($data['query']){
 			$product = product::where('product_status',1)->where('product_name','LIKE','%'.$data['query'].'%')->get();
-			$output = '<ul class="dropdown-menu" style="display: inline-block; position: absolute;">';
-			foreach ($product as $key => $value) {
-				$output .= '
-				<a class="dropdown-item" href="#>'.$value->product_name.'</a>';
-			}
-			$output .='</ul>';
-			echo $output;
-
+			return view('pages.component.recomendedsearch')->with(compact('product'));
 		}
-		else
-		{
-			$output = '<ul class="dropdown-menu" style="display: inline-block; position: absolute;">';
-			$output .= '
-				<li><a href="#>Không tìm thấy sản phẩm phù hợp</a></li>';
-			$output .='</ul>';
-			echo $output;
-		}
+		
 	}
 
 	

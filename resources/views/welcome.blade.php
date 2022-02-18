@@ -198,6 +198,32 @@
     border-radius: 5px;
     color: #fff;
 }
+.searchform .input-group {
+    width: 250px;
+    position: relative;
+}
+
+.searchform .search-result {
+    position: absolute;
+    background-color: #fff;
+    z-index: 99;
+    padding: 10px;
+    width: 250px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+}
+.searchform .search-result .media .media-body h4{
+   font-size: 14px;
+   color: #8d7acb;
+   margin-left: 10px;
+}
+.searchform .search-result p{
+   margin-left: 10px;
+   font-size: 11px;
+   font-style: italic;
+   color: #e80f0f;
+}
         </style>
     </head>
     <body>
@@ -569,10 +595,14 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
                                             <li style="float: right;margin-top: 5px;"><form action="#" method="get" class="searchform navbar-form" role="search">
     <input type="hidden" value="search" name="view">
     <div class="input-group">
-    <input type="text"  name="searchword" required class="form-control" placeholder="Tìm kiếm..." name="q">
+    <input type="text"  name="searchword" required class="form-control recomendedsearch" placeholder="Tìm kiếm..." name="q">
+    
         <div class="input-group-btn">
     <button class="btn" type="submit"><i class="fa fa-search"></i></button>
         </div>
+    </div>
+    <div class="search-result">
+        
     </div>
     </form></li>
                                            {{--  
@@ -1089,39 +1119,29 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
     $('.ba-we-love-subscribers').toggleClass("open");
     $('.img-fab.img').toggleClass("close");
 });
-        $('#recommendajax').keyup(function(){
+        $('.search-result').hide();
+        $('.recomendedsearch').keyup(function(){
             var query = $(this).val();
-            var html = '';
-            html += '<div class="media">';
-            html += '<a class="pull-left" href="#">';
-            html += '<img class="media-object" width="50" src="{{asset('/public/frontend/limupa/images/menu/logo/logo.png')}}" alt="Image">';
-            html += '</a>';
-            html += '<div class="media-body">';
-            html += '<h4 class="media-heading"><a href="#">Media</a></h4>';
-            html += '<p>Lorem</p>';
-            html += '</div>';
-            html += '</div>';
-            $('#ajaxload').html(html);
-            // if(query != '')
-            // {
-            //     $.ajax({
-            //         url:"{{ url('/recommendajax') }}",
-            //         method:"POST",
-            //         data:
-            //         {
-            //             query:query,
-            //             "_token":"{{ csrf_token() }}"
-            //         },
-            //         success:function(res){
-            //             $('#ajaxload').fadeIn();
-            //             $('#ajaxload').html(res);
-            //         }
-            //     });
-            // }
-            // else
-            // {
-            //     $('#ajaxload').fadeOut();
-            // }
+            if(query != '')
+            {
+                $.ajax({
+                    url:"{{ url('/recommendajax') }}",
+                    method:"POST",
+                    data:
+                    {
+                        query:query,
+                        "_token":"{{ csrf_token() }}"
+                    },
+                    success:function(res){
+                        $('.search-result').fadeIn();
+                        $('.search-result').html(res);
+                    }
+                });
+            }
+            else
+            {
+                $('.search-result').fadeOut();
+            }
         });
         $(document).on('click','.liajax',function(){
             $('#recommendajax').val($(this).text());
